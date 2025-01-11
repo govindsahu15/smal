@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Mfg. & Automation Lab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="logo1.png" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+         .students-section {
+            padding: 20px;
+            background-color: #fff;
+            margin: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .students-section h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 700;
+            font-size: 32px;
+        }
+       
+       .accordion-section {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .accordion-header {
+            background-color: #f0f0f0;
+            padding: 15px;
+            cursor: pointer;
+            text-align: left;
+           font-weight: 700;
+        }
+        .accordion-content {
+            padding: 10px;
+             display: none; /* Initially hide content */
+             
+        }
+         .student-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .student-card {
+           width: calc(25% - 20px); /* 4 items per row */
+           margin: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            text-align: center;
+            cursor: pointer;
+             box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+        .student-photo {
+            width: 150px;
+            height: 150px;
+            max-width: 150px;
+            max-height: 150px;
+            border-radius: 5px;
+            margin: 0 auto;
+            display: block;
+            
+        }
+        .student-info {
+           text-align: center;
+           margin-top: 10px;
+        }
+        .student-info p {
+            margin: 5px 0;
+        }
+        .student-info p strong {
+            font-weight: 700;
+        }
+         @media (max-width: 768px) {
+            .student-card {
+                width: calc(50% - 20px);
+            }
+        }
+        @media (max-width: 576px) {
+            .student-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header"></div>
+    <main>
+        <section class="students-section">
+            <hr>
+            <h1>Interns</h1>
+            <hr>
+            
+             <div class="accordion-section">
+                    <div class="accordion-header">Summer Interns 2024</div>
+                    <div class="accordion-content">
+                          <div class="student-grid">
+                             <div class="student-card" data-intern-type="summer">
+                                <img src="krishna.png" alt="Krishna Sudeep" class="student-photo">
+                                <div class="student-info">
+                                    <p><strong>Name: </strong>Krishna Sudeep</p>
+                                    <p><strong>Research Area: </strong>Machine Learning for Manufacturing Systems</p>
+                                    <p><strong>BTech: </strong>ME, IIT Madras</p>
+                                    <p><strong>Year: </strong>April - July, 2024</p>
+                                </div>
+                             </div>
+                                
+                             <div class="student-card" data-intern-type="summer">
+                                <img src="dhairya.jpeg" alt="Dhairya Bhatia" class="student-photo">
+                                 <div class="student-info">
+                                        <p><strong>Name: </strong>Dhairya Bhatia</p>
+                                        <p><strong>Research Area: </strong>GUI for Real-Time Data Acquisition</p>
+                                         <p><strong>BTech: </strong>CSE, Medicaps University, Indore</p>
+                                         <p><strong>Year: </strong>June - July, 2024</p>
+                                 </div>
+                            </div>
+                                   <div class="student-card" data-intern-type="summer">
+                                    <img src="harsh.png" alt="Harsh Singh Rajput" class="student-photo">
+                                     <div class="student-info">
+                                        <p><strong>Name: </strong>Harsh Singh Rajput</p>
+                                        <p><strong>Research Area: </strong>AR for Manufacturing Systems</p>
+                                        <p><strong>BTech: </strong>ME, Medicaps University, Indore</p>
+                                        <p><strong>Year: </strong>June - July, 2024</p>
+                                    </div>
+                                </div>
+                                <div class="student-card" data-intern-type="summer">
+                                    <img src="vishwanath.png" alt="Viswanath Vishnu" class="student-photo">
+                                     <div class="student-info">
+                                          <p><strong>Name: </strong>Viswanath Vishnu</p>
+                                          <p><strong>Research Area: </strong>Wireless Accelerometer</p>
+                                          <p><strong>BTech: </strong>ME, RGUKT, Andhra Pradesh</p>
+                                          <p><strong>Year: </strong>June - July, 2024</p>
+                                     </div>
+                                </div>
+                                <div class="student-card" data-intern-type="summer">
+                                    <img src="rekam.png" alt="Rekam Govardhan" class="student-photo">
+                                    <div class="student-info">
+                                        <p><strong>Name: </strong>Rekam Govardhan</p>
+                                        <p><strong>Research Area: </strong>Edge Computing and Decision-Making</p>
+                                         <p><strong>BTech: </strong>ECE, RGUKT, Andhra Pradesh</p>
+                                        <p><strong>Year: </strong>July, 2024</p>
+                                    </div>
+                                </div>
+                            </div>
+                   </div>
+            </div>
+
+            <div class="accordion-section">
+                <div class="accordion-header">Winter Interns 2025</div>
+                    <div class="accordion-content">
+                           <div class="student-grid">
+                                <div class="student-card" data-intern-type="winter">
+                                    <img src="PRATIK RAJ.jpg" alt="Pratik Raj" class="student-photo">
+                                    <div class="student-info">
+                                        <p><strong>Name: </strong>Pratik Raj</p>
+                                        <p><strong>Research Area: </strong>Wireless Accelerometer</p>
+                                         <p><strong>BTech: </strong>IIT, Tirupati</p>
+                                        <p><strong>Year: </strong>December, 2024</p>
+                                    </div>
+                                </div>
+                                 <div class="student-card" data-intern-type="winter">
+                                    <img src="santak panda.JPG" alt="SANTAK PANDA" class="student-photo">
+                                    <div class="student-info">
+                                        <p><strong>Name: </strong>Santak Panda</p>
+                                        <p><strong>Research Area: </strong>Wireless Accelerometer</p>
+                                         <p><strong>BTech: </strong>IIT Tirupati</p>
+                                        <p><strong>Year: </strong>December, 2024</p>
+                                    </div>
+                                </div>
+                                 <div class="student-card" data-intern-type="winter">
+                                     <img src="ayyappa.jpeg" alt="Venkata Surya Ayyappa Reddy Karri" class="student-photo">
+                                     <div class="student-info">
+                                        <p><strong>Name: </strong>Venkata Surya Ayyappa Reddy Karri</p>
+                                         <p><strong>Research Area: </strong>Automated Inspection</p>
+                                        <p><strong>BTech: </strong>SRKR Engineering College</p>
+                                          <p><strong>Year: </strong>December, 2024</p>
+                                     </div>
+                                 </div>
+                                <div class="student-card" data-intern-type="winter">
+                                    <img src="Surya YANAGANDALA.jpg" alt="YANAGANDALA SURYA NAGA DURGA VARA PRASAD" class="student-photo">
+                                     <div class="student-info">
+                                        <p><strong>Name: </strong>Yanagandala Surya Naga Durga Vara Prasad</p>
+                                         <p><strong>Research Area: </strong>3D Printing</p>
+                                         <p><strong>BTech: </strong>UCEN - JNTUK</p>
+                                          <p><strong>Year: </strong>December, 2024</p>
+                                     </div>
+                                </div>
+                                
+                                  <div class="student-card" data-intern-type="winter">
+                                      <img src="ganesh.jpg" alt="Ganesh Murupilli" class="student-photo">
+                                    <div class="student-info">
+                                        <p><strong>Name: </strong>Ganesh Murupilli</p>
+                                        <p><strong>Research Area: </strong>Automation Inspection</p>
+                                         <p><strong>BTech: </strong>UCEN - JNTUK</p>
+                                          <p><strong>Year: </strong>December, 2024</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="student-card" data-intern-type="winter">
+                                     <img src="surya vardhan.jpg" alt="DUPUGUNTLA SURYA VARDHAN" class="student-photo">
+                                    <div class="student-info">
+                                        <p><strong>Name: </strong>Dupuguntla Surya Vardhan</p>
+                                         <p><strong>Research Area: </strong>3D Printing</p>
+                                        <p><strong>BTech: </strong>UCEN - JNTUK</p>
+                                          <p><strong>Year: </strong>December, 2024</p>
+                                    </div>
+                                </div>
+                                
+                                 <div class="student-card" data-intern-type="winter">
+                                     <img src="jashwanth.jpg" alt="BODDU JASHWANTH" class="student-photo">
+                                    <div class="student-info">
+                                        <p><strong>Name: </strong>Boddu Jashwanth</p>
+                                         <p><strong>Research Area: </strong>Automation Inspection</p>
+                                         <p><strong>BTech: </strong>UCEN - JNTUK</p>
+                                          <p><strong>Year: </strong>December, 2024</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="student-card" data-intern-type="winter">
+                                    <img src="Venkatesh Thota.jpg" alt="Venkatesh Thota" class="student-photo">
+                                     <div class="student-info">
+                                       <p><strong>Name: </strong>Venkatesh Thota</p>
+                                         <p><strong>Research Area: </strong>Automated Inspection</p>
+                                         <p><strong>BTech: </strong>SRKR Engineering College</p>
+                                          <p><strong>Year: </strong>December, 2024</p>
+                                    </div>
+                                 </div>
+                                   <div class="student-card" data-intern-type="winter">
+                                    <img src="govardhan.jpeg" alt="Rekam Govardhana" class="student-photo">
+                                     <div class="student-info">
+                                         <p><strong>Name: </strong>Rekam Govardhana</p>
+                                          <p><strong>Research Area: </strong>Portable, Affordable and Multifunctional Digital Solution for Strabismus</p>
+                                          <p><strong>BTech: </strong>Rajiv Gandhi University of Knowledge Technologies</p>
+                                         <p><strong>Year: </strong>December, 2024</p>
+                                     </div>
+                                </div>
+                            </div>
+                     </div>
+            </div>
+        </section>
+    </main>
+    <div id="footer"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+           document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.accordion-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+
+                       // Close other open accordion content
+                    document.querySelectorAll('.accordion-content').forEach(otherContent => {
+                        if (otherContent !== content && otherContent.style.display === 'block') {
+                            otherContent.style.display = 'none';
+                        }
+                    });
+                 
+
+                    // Toggle the display of current content
+                    if (content.style.display === 'block') {
+                        content.style.display = 'none';
+                    } else {
+                        content.style.display = 'block';
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

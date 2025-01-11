@@ -1,0 +1,328 @@
+.profile-image {
+    max-width: 100%;
+    margin-top: -2.1rem;
+}
+.profile-content {
+    text-align: left; /* Align text to the left */
+}
+
+.profile-image {
+    display: block; /* Ensure image is block level to center it */
+    margin: 0 auto; /* Center image horizontally */
+}
+
+.text-left {
+    text-align: left; /* Ensure the text inside profile-content is left-aligned */
+}
+.pcontent {
+    font-size: 1.2rem;
+    text-align: justify;
+}
+.pcontent p.highlight {
+    background-color: #f8f9fa; /* Light background color for emphasis */
+    border-left: 5px solid #007bff; /* Blue border for attention */
+    padding: 10px 15px; /* Padding for readability */
+    margin: 10px 0; /* Spacing around the paragraph */
+    font-style: italic; /* Optional: italicize text for emphasis */
+}
+
+.pcontent p.highlight:hover {
+    background-color: #e9ecef; /* Slightly darker background on hover */
+    border-left-color: #0056b3; /* Darker blue border on hover */
+}
+.site-header {
+    background-color: #8B3A3A;
+    color: white;
+}
+.site-header h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+}
+.navbar-nav .nav-link {
+    color: white !important;
+    margin-left: 1rem;
+    font-family: 'Roboto', sans-serif;
+}
+.navbar-nav .nav-link:hover {
+    background-color: #575757;
+    font-family: 'Roboto', sans-serif;
+}
+.dropdown-menu {
+    background-color: #333;
+    font-family: 'Roboto', sans-serif;
+}
+.dropdown-item {
+    color: white !important;
+    font-family: 'Roboto', sans-serif;
+}
+.dropdown-item:hover {
+    background-color: #575757;
+    font-family: 'Roboto', sans-serif;
+}
+.site-footer {
+    background-color: #000;
+    color: #fff;
+    padding: 20px 0;
+    margin-top: 20rem;
+}
+.footer-section h4 {
+    margin-bottom: 20px;
+}
+.footer-section ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+.footer-section a {
+    text-decoration: none;
+    color: #fff;
+}
+.footer-section a:hover {
+    text-decoration: underline;
+}
+.footer-section .fa {
+    margin: 0 10px;
+    color: #fff;
+    text-decoration: none;
+}
+.footer-section .fa:hover {
+    color: #ddd;
+}
+.footer-section {
+    text-align: center;
+}
+.pdata h2{
+    color: green;
+}
+.mb-4 h4{
+    color: blue;
+    font-family: 'Roboto', sans-serif;
+}
+.pecontent ul li {
+    padding-bottom: 0.625rem;
+  text-align: justify;
+  font-family: 'Roboto', sans-serif;
+}
+.pecontent {
+  font-family: 'Roboto', sans-serif;
+}
+.pecontent h2 {
+  font-weight: 100;
+}
+ .pdata {
+  font-family: 'Roboto', sans-serif;
+}
+.pdata h2 {
+  font-family: 'Roboto', sans-serif;
+ }
+.mb-4{
+    text-align: justify;
+    font-family: 'Roboto', sans-serif;
+}
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+}
+
+.gallery figure {
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.gallery figure:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+}
+
+.gallery img {
+    width: 100%;
+    height: auto;
+    display: block;
+    cursor: pointer;
+}
+
+.gallery figcaption {
+    padding: 0.9375rem;
+    font-size: 1em;
+    color: #666;
+    text-align: center;
+    font-weight: 500;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 3.75rem;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 43.75rem;
+}
+
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 43.75rem;
+    text-align: center;
+    color: #ccc;
+    padding: 0.625rem 0;
+}
+
+.modal-content, #caption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from { -webkit-transform: scale(0) }
+    to { -webkit-transform: scale(1) }
+}
+
+@keyframes zoom {
+    from { transform: scale(0) }
+    to { transform: scale(1) }
+}
+
+.close {
+    position: absolute;
+    top: 0.9375rem;
+    right: 2.1875rem;
+    color: #f1f1f1;
+    font-size: 2.5rem;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+@media (max-width:768px) {
+   h1{
+    font-size: 0.75rem;
+   }
+   img{
+    width: 4.9rem;
+   }
+   .pcontent {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    text-align: justify;
+}
+.profile-image {
+    width: 12rem;
+}
+    
+}
+@media (max-width:370px) {
+   img{
+    width: 3rem;
+   }
+    
+}
+/* Remove borders and padding from list items */
+.list-group-item {
+    border: none; /* Removes borders */
+    padding-left: 0; /* Optional: removes padding from the left */
+    padding-right: 0; /* Optional: removes padding from the right */
+    margin-bottom: 0; /* Optional: removes bottom margin if needed */
+}
+
+/* Remove border from list-group */
+.list-group {
+    border: none; /* Removes border around the entire list group */
+    padding-left: 0; /* Optional: removes padding on the left */
+}
+
+/* Optional: Add custom styling to list items if needed */
+.list-group-item {
+    background-color: transparent; /* Optional: makes background transparent */
+    font-size: 1rem; /* Adjust font size if needed */
+    color: #333; /* Set text color */
+}
+.intro-section {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 70;
+}
+.expertise-section {
+    font-family: 'Roboto', sans-serif;
+}
+.expertise-section1 {
+    font-family: 'Roboto', sans-serif;
+}
+.expertise-section h2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+.expertise-section1 h2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+.pecontent {
+            font-family: 'Roboto', sans-serif;
+        }
+        .course-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem; /* Adjust as needed */
+        }
+        .course-name {
+            flex: 2; /* Adjust the flex value as needed */
+        }
+        .course-date {
+            flex: 1;
+            text-align: left; /* Align date to the right */
+        }
+        .course-date p {
+            margin: 0; /* Remove default margin */
+        }
+        .year p {
+            margin: 0; /* Remove default margin */
+        }
+    .facilities-section {
+        margin-top: 0;
+    }
+    .pdf-viewer {
+        width: 100%;
+        height: 600px; /* Adjust height as needed */
+        border: none;
+    }
+    .gallery img {
+        width: 100%;
+        height: auto;
+        max-width: 400px; /* Reduce max width for faster loading */
+        margin-bottom: 15px;
+        cursor: pointer;
+    }
+    .gallery figure {
+        text-align: center;
+    }
+    .gallery figcaption {
+        font-size: 0.85em; /* Adjust the font size of the caption */
+        color: #555; /* Optional: make the color a bit lighter */
+    }
