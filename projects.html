@@ -9,14 +9,13 @@
     
     <link rel="icon" href="logo1.png" type="image/x-icon">
     <style>
-        body { font-family: 'Roboto', sans-serif; margin: 0; padding: 0; }
+        body { font-family: 'Roboto', sans-serif; margin: 0;}
         .container { width: 90%;  /* Increased container width */
         }
         h2 { text-align: center; margin-bottom: 20px;}
         table { width: 100%; border-collapse: collapse; }
-        th, td { border: 1px solid #ddd; padding: 5px; text-align: left; }
-        th { background-color: #8B3A3A;
-        color: #ffffff; }
+        th, td { border: 1px solid #ddd; padding: 20px; text-align: left; }
+        th { background-color: #8B3A3A;color: #ffffff;}
          th:nth-child(1), td:nth-child(1) {
             width: 30%; /* Increased width for Project Title */
         }
@@ -33,6 +32,10 @@
         table tr:nth-child(even) {
             background-color: #f9f9f9;
         }
+        .ongoing-projects td{ padding: 15px;}
+        .container h2{
+            color: green ; font-size: 32px ; font-weight:400 ; text-align:center;
+        }
     </style>
 
 </head>
@@ -41,7 +44,7 @@
     
     <div class="container my-5">
         <hr>
-        <h1 style="color: #000;font-size: 32px;font-weight:600px;text-align:center;">Projects</h1>
+        <h2>Projects</h2>
         <hr>
           <table>
               <thead>
@@ -55,7 +58,7 @@
               </thead>
           </table>
           <div class="ongoing-projects">
-            <h3>Ongoing Projects</h3>
+            <!-- <h3>Ongoing Projects</h3> -->
             <table>
                 <tbody>
                     <tr>
