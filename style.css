@@ -149,7 +149,7 @@
     height: 250px;
     display: block;
     cursor: pointer;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .gallery figcaption {
