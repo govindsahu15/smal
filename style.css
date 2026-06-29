@@ -291,14 +291,30 @@
         .course-item {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             margin-bottom: 1rem; /* Adjust as needed */
+            flex-wrap: wrap;
         }
         .course-name {
-            flex: 2; /* Adjust the flex value as needed */
+            flex: 2;
+            min-width: 250px;
         }
         .course-date {
             flex: 1;
-            text-align: left; /* Align date to the right */
+            min-width: 140px;
+            text-align: left;
+        }
+        .course-resource {
+            flex: 1;
+            min-width: 180px;
+            text-align: right;
+        }
+        .course-resource a {
+            color: #0d6efd;
+            text-decoration: none;
+        }
+        .course-resource a:hover {
+            text-decoration: underline;
         }
         .course-date p {
             margin: 0; /* Remove default margin */

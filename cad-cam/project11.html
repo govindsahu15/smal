@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project 11 — Sketch2Solid</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <nav class="topnav">
+    <div class="topnav-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">◧</span>
+        <span class="brand-text">CAD<span class="brand-slash">/</span>CAM <em>Studio</em></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="project9.html">Curves</a></li>
+        <li><a href="project10.html">Surfaces</a></li>
+        <li><a href="project11.html" class="active" aria-current="page">Sketch2Solid</a></li>
+      </ul>
+      <span class="nav-tag">ME316L</span>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <header>
+      <h1>Sketch2Solid</h1>
+      <a class="crumb" href="index.html">← All projects</a>
+    </header>
+
+    <section class="project-intro">
+      <p>
+        Project 11 turns three 2D orthographic sketches into a 3D solid. Upload or load sample
+        <strong>top</strong>, <strong>front</strong>, and <strong>side</strong> views, then the app segments
+        each image, intersects the silhouettes in voxel space, smooths the result, and runs
+        <strong>marching cubes</strong> to produce a watertight mesh you can inspect in 3D and export as
+        <strong>STL</strong>.
+      </p>
+      <p class="meta">
+        <span><strong>Author:</strong> ME23B042 PRANESH VIJAYAKUMAR</span>
+        <span><strong>Original:</strong> Python / tkinter + matplotlib desktop app</span>
+      </p>
+    </section>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <p class="sidebar-title">Input Views</p>
+        <label>Top view</label>
+        <input type="file" id="file-top" accept="image/*" />
+        <label>Front view</label>
+        <input type="file" id="file-front" accept="image/*" />
+        <label>Side view</label>
+        <input type="file" id="file-side" accept="image/*" />
+
+        <label>Sample datasets</label>
+        <div class="btn-row">
+          <button class="btn secondary" id="btnSample1">Sample 1 — Box</button>
+          <button class="btn secondary" id="btnSample2">Sample 2 — L-Step</button>
+          <button class="btn secondary" id="btnSample3">Sample 3 — T-Shape</button>
+        </div>
+        <button class="btn secondary" id="btnShowEdges">View Raw Edges</button>
+
+        <p class="sidebar-title" style="margin-top: 1.1rem;">Reconstruction</p>
+        <label><input type="checkbox" id="smoothing" checked /> Enable Curve Smoothing</label>
+        <label><input type="checkbox" id="wireframe" /> Enable Wireframe Mode</label>
+        <label><input type="checkbox" id="aiOpt" checked /> Enable AI Optimization</label>
+        <label>Resolution</label>
+        <input type="range" id="resolution" min="60" max="100" value="100" />
+        <button class="btn" id="btnGenerate">Generate AI 3D Model</button>
+        <button class="btn secondary" id="btnExportStl">Export as CAD (.STL)</button>
+
+        <label>Camera view</label>
+        <select id="viewSelect">
+          <option>Isometric</option>
+          <option>Top</option>
+          <option>Front</option>
+          <option>Side</option>
+        </select>
+        <div class="stats" id="stats">Awaiting model generation...</div>
+      </aside>
+
+      <main class="main">
+        <div class="preview-row">
+          <div><strong>Top</strong><canvas id="preview-top"></canvas></div>
+          <div><strong>Front</strong><canvas id="preview-front"></canvas></div>
+          <div><strong>Side</strong><canvas id="preview-side"></canvas></div>
+        </div>
+        <div class="viewport-wrap">
+          <div id="viewport3d"></div>
+          <div class="axis-legend">
+            <span class="ax-x">X</span>
+            <span class="ax-y">Y</span>
+            <span class="ax-z">Z</span>
+            <span class="ax-note">Voxel space 0–100 (same as Python app)</span>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <span>Project 11 — Sketch2Solid · ME23B042 PRANESH VIJAYAKUMAR</span>
+    <a href="index.html">← Back to portfolio</a>
+  </footer>
+
+  <script type="module" src="js/project11/app.js"></script>
+</body>
+</html>

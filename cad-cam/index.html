@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CAD/CAM Studio — Project Portfolio</title>
+  <meta name="description" content="Three interactive ME316L CAD/CAM browser demos: curve design, NURBS surface modelling, and sketch-to-solid reconstruction." />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+  <nav class="topnav">
+    <div class="topnav-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">◧</span>
+        <span class="brand-text">CAD<span class="brand-slash">/</span>CAM <em>Studio</em></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+        <li><a href="project9.html">Curves</a></li>
+        <li><a href="project10.html">Surfaces</a></li>
+        <li><a href="project11.html">Sketch2Solid</a></li>
+      </ul>
+      <span class="nav-tag">ME316L</span>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <section class="hero">
+      <span class="hero-badge">◆ Interactive Browser Demos</span>
+      <h1>CAD/CAM Project Portfolio</h1>
+      <p>
+        Three ME316L CAD/CAM student projects, reborn as interactive web apps. Each demo is a faithful
+        JavaScript port of the original Python desktop tool — same core algorithms, no backend, no install.
+        Design curves, model NURBS surfaces, plan machining toolpaths, and reconstruct solids from sketches,
+        all in the browser.
+      </p>
+      <div class="hero-meta">
+        <div class="hero-stat"><strong>3</strong><span>Projects</span></div>
+        <div class="hero-stat"><strong>100%</strong><span>Client-side</span></div>
+        <div class="hero-stat"><strong>WebGL</strong><span>3D Rendering</span></div>
+      </div>
+    </section>
+
+    <div class="grid">
+      <article class="card">
+        <div class="card-icon">∿</div>
+        <span class="card-tag">Project 9 · 2D Curves</span>
+        <h2>Advanced Curve Visualizer</h2>
+        <p>
+          Interactive 2D curve design with Bezier, B-spline, and NURBS. Drag control points, tune degree
+          and per-point weights, then export the final path as CSV or G-code.
+        </p>
+        <div class="chip-row">
+          <span class="chip">Bezier</span>
+          <span class="chip">B-spline</span>
+          <span class="chip">NURBS</span>
+          <span class="chip">G-code</span>
+        </div>
+        <p class="meta"><strong>Author:</strong> ME23B013 DARAM SATHVIKA</p>
+        <a class="btn" href="project9.html">Open Curve Visualizer →</a>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">◳</div>
+        <span class="card-tag">Project 10 · 3D Surfaces</span>
+        <h2>NURBS Surface Modeller</h2>
+        <p>
+          3D NURBS surface modelling from curves — loft, extrude, solid body generation, zig-zag toolpath
+          planning, and G-code export for CNC machining.
+        </p>
+        <div class="chip-row">
+          <span class="chip">Loft</span>
+          <span class="chip">Extrude</span>
+          <span class="chip">Toolpath</span>
+          <span class="chip">CNC</span>
+        </div>
+        <p class="meta"><strong>Author:</strong> ME23B036 NIRANJAN M</p>
+        <a class="btn" href="project10.html">Open NURBS Surface Modeller →</a>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">⬡</div>
+        <span class="card-tag">Project 11 · Reconstruction</span>
+        <h2>Sketch2Solid</h2>
+        <p>
+          Reconstruct a 3D solid from three orthographic sketches (top, front, side) using voxel
+          intersection, AI-style segmentation, and marching cubes — export as STL.
+        </p>
+        <div class="chip-row">
+          <span class="chip">Voxels</span>
+          <span class="chip">Marching Cubes</span>
+          <span class="chip">STL</span>
+        </div>
+        <p class="meta"><strong>Author:</strong> ME23B042 PRANESH VIJAYAKUMAR</p>
+        <a class="btn" href="project11.html">Open Sketch2Solid →</a>
+      </article>
+    </div>
+
+    <!-- <section class="project-intro" style="margin-top: 1.5rem;">
+      <p class="meta" style="margin: 0;">
+        <strong>Run locally:</strong>&nbsp; <code>python -m http.server 8000</code> inside the
+        <code>frontend/</code> folder, then open <code>http://localhost:8000</code>
+      </p>
+    </section> -->
+  </div>
+
+  <footer class="site-footer">
+    <span>CAD/CAM Studio — ME316L browser demos</span>
+    <!-- <span>JavaScript ports of original Python desktop tools</span> -->
+  </footer>
+</body>
+</html>

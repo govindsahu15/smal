@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project 10 — NURBS Surface Modeller</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <nav class="topnav">
+    <div class="topnav-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">◧</span>
+        <span class="brand-text">CAD<span class="brand-slash">/</span>CAM <em>Studio</em></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="project9.html">Curves</a></li>
+        <li><a href="project10.html" class="active" aria-current="page">Surfaces</a></li>
+        <li><a href="project11.html">Sketch2Solid</a></li>
+      </ul>
+      <span class="nav-tag">ME316L</span>
+    </div>
+  </nav>
+
+  <div class="wrap wrap-wide">
+    <header>
+      <h1>NURBS Surface Modeller</h1>
+      <a class="crumb" href="index.html">← All projects</a>
+    </header>
+
+    <section class="project-intro">
+      <p>
+        Project 10 is a 3D NURBS surface modelling and CAM prep tool. Create curves, generate surfaces by
+        loft or extrusion, build solid or shell bodies, then compute a <strong>zig-zag toolpath</strong> on
+        the mesh and export <strong>G-code</strong> — matching the workflow of the original PyQt desktop
+        application.
+      </p>
+      <p class="meta">
+        <span><strong>Author:</strong> ME23B036 NIRANJAN M</span>
+        <span><strong>Original:</strong> Python / PyQt5 + PyVista desktop app</span>
+      </p>
+    </section>
+
+    <div class="layout layout-wide">
+      <aside class="sidebar sidebar-scroll">
+        <div class="help-panel">
+          <p class="sidebar-title" style="margin-bottom: 0.5rem;">Quick start</p>
+          <ol class="help-list">
+            <li><strong>Navigate:</strong> Left-drag to rotate, scroll to zoom, right-drag to pan.</li>
+            <li><strong>Curves:</strong> A default arch is loaded. Pick a curve in the list or click <em>Create Curve</em>.</li>
+            <li><strong>Edit points:</strong> Drag control points in the viewport. <em>Shift+click</em> the floor plane to add a point — no mode switch needed.</li>
+            <li><strong>Surface:</strong> Source → <em>Extrude Active Curve</em> → <em>Generate Surface</em>.</li>
+            <li><strong>Solid body:</strong> Mode → <em>Full Solid Extrusion</em> → <em>Extrude Selected Surface</em>.</li>
+            <li><strong>Toolpath:</strong> Source → <em>Derived Body Mesh</em> → <em>Generate Zig-Zag Toolpath</em>.</li>
+            <li><strong>Export:</strong> Open <em>G-code Export</em> → <em>Export G-code</em>.</li>
+          </ol>
+
+          <div class="help-example">
+            <p class="help-example-title">Example — arch profile → solid → toolpath</p>
+            <p class="help-example-desc">
+              On load you already see <strong>Curve 1</strong> (a Bezier arch on the XY plane).
+              Follow these exact settings to reproduce the demo from the original Python app:
+            </p>
+            <ol class="help-list help-list-compact">
+              <li><strong>Curves</strong> — leave <em>Curve 1 (Bezier)</em> selected. Optional: drag handles or <em>Shift+click</em> the plane to tweak the arch.</li>
+              <li><strong>Surface Generation</strong> — Source: <em>Extrude Active Curve</em> · Axis: <em>Z+</em> · Height: <em>40</em> · Layers: <em>3</em> · Samples: <em>30</em> → click <em>Generate Surface</em>.<br />You should see a light-blue surface sheet rising along Z.</li>
+              <li><strong>Surface Operations</strong> — Mode: <em>Full Solid Extrusion</em> · Distance: <em>40</em> → click <em>Extrude Selected Surface</em>.<br />A teal solid block appears around the surface.</li>
+              <li><strong>Toolpath</strong> — Source: <em>Derived Body Mesh</em> · Stepover: <em>1</em> · Tool radius: <em>2</em> → click <em>Generate Zig-Zag Toolpath</em>.<br />Green zig-zag lines appear on the solid.</li>
+              <li><strong>G-code Export</strong> — open that section → click <em>Export G-code</em> to download <code>toolpath.nc</code>.</li>
+            </ol>
+          </div>
+        </div>
+
+        <details open class="panel-section">
+          <summary>Show / Hide in viewport</summary>
+          <div class="panel-body visibility-toggles">
+            <label><input type="checkbox" id="visCurves" checked /> Curves &amp; control points</label>
+            <label><input type="checkbox" id="visSurface" checked /> NURBS surface sheet</label>
+            <label><input type="checkbox" id="visBodies" checked /> Solid / shell body</label>
+            <label><input type="checkbox" id="visSurfControlPts" checked /> Surface control points</label>
+            <label><input type="checkbox" id="visControlNet" checked /> Surface control net lines</label>
+            <label><input type="checkbox" id="visToolpath" checked /> Zig-zag toolpath</label>
+            <label><input type="checkbox" id="visGrid" checked /> Floor grid &amp; axes</label>
+          </div>
+        </details>
+
+        <details open class="panel-section">
+          <summary>Delete / Clear</summary>
+          <div class="panel-body">
+            <button class="btn secondary" id="btnDeleteSurface" type="button">Delete active surface</button>
+            <button class="btn secondary" id="btnDeleteBody" type="button">Delete active body</button>
+            <button class="btn secondary" id="btnClearToolpath" type="button">Clear toolpath</button>
+            <button class="btn secondary" id="btnClearAll" type="button">Clear all geometry</button>
+            <p class="help-example-note">Keeps curves. Clears surfaces, bodies, and/or toolpath so you can start fresh.</p>
+          </div>
+        </details>
+
+        <p class="sidebar-title">Modelling Workbench</p>
+        <details open class="panel-section">
+          <summary>Curves</summary>
+          <div class="panel-body">
+            <div class="row-2">
+              <label>Type<select id="curveType"><option>Bezier</option><option>B-spline</option><option>NURBS</option></select></label>
+              <label>Degree<input type="number" id="curveDegree" min="1" max="6" value="3" /></label>
+            </div>
+            <label>Knots<select id="curveKnotMode"><option>Uniform</option><option>Non-uniform</option></select></label>
+            <button class="btn" id="btnCreateCurve">Create Curve</button>
+            <label><input type="checkbox" id="curvePlaneLock" checked /> Place points on XY plane (z=0)</label>
+            <p class="sidebar-hint">Viewport: drag to rotate · scroll zoom · right-drag pan · <strong>Shift+click</strong> plane to add point · drag a handle to move it</p>
+            <label>Curves<select id="curveList" size="4"></select></label>
+            <div class="btn-row">
+              <button class="btn secondary" id="btnDeleteCurve">Delete Curve</button>
+              <button class="btn secondary" id="btnAddCurvePoint">Add Point</button>
+              <button class="btn secondary" id="btnDeleteCurvePoint">Delete Point</button>
+            </div>
+            <label>Control points<select id="curvePointList" size="4"></select></label>
+            <div class="row-2">
+              <label>X<input type="number" id="curvePtX" step="0.5" /></label>
+              <label>Y<input type="number" id="curvePtY" step="0.5" /></label>
+            </div>
+            <div class="row-2">
+              <label>Z<input type="number" id="curvePtZ" step="0.5" /></label>
+              <label>Weight<input type="number" id="curvePtW" step="0.1" min="0.05" value="1" /></label>
+            </div>
+            <button class="btn secondary" id="btnApplyCurvePoint">Apply Point Edit</button>
+          </div>
+        </details>
+
+        <details open class="panel-section">
+          <summary>Control Point Editor</summary>
+          <div class="panel-body">
+            <div class="row-2">
+              <label>Row<input type="number" id="surfRow" min="0" value="0" /></label>
+              <label>Column<input type="number" id="surfCol" min="0" value="0" /></label>
+            </div>
+            <div class="row-2">
+              <label>X<input type="number" id="surfPtX" step="0.5" /></label>
+              <label>Y<input type="number" id="surfPtY" step="0.5" /></label>
+            </div>
+            <div class="row-2">
+              <label>Z<input type="number" id="surfPtZ" step="0.5" /></label>
+              <label>Weight<input type="number" id="surfPtW" step="0.1" min="0.05" value="1" /></label>
+            </div>
+            <label>Drag sensitivity<input type="number" id="dragSensitivity" min="0.1" max="2" step="0.05" value="1" /></label>
+            <button class="btn secondary" id="btnApplySurfPoint">Apply Point Update</button>
+          </div>
+        </details>
+
+        <details open class="panel-section">
+          <summary>Surface Generation</summary>
+          <div class="panel-body">
+            <label>Source<select id="surfaceSource">
+              <option value="control-net">Control Net Demo</option>
+              <option value="curve-loft">Loft From Curves</option>
+              <option value="curve-extrude" selected>Extrude Active Curve</option>
+            </select></label>
+            <div class="row-2">
+              <label>Rows<input type="number" id="surfRows" min="2" max="25" value="4" /></label>
+              <label>Columns<input type="number" id="surfCols" min="2" max="25" value="4" /></label>
+            </div>
+            <label>Curve samples<input type="number" id="curveSamples" min="10" max="200" value="30" /></label>
+            <label>Extrude axis<select id="extrudeAxis">
+              <option value="X+">X+</option>
+              <option value="Y+">Y+</option>
+              <option value="Z+" selected>Z+</option>
+            </select></label>
+            <div class="row-2">
+              <label>Extrude height<input type="number" id="extrudeHeight" min="1" max="500" step="1" value="40" /></label>
+              <label>Extrude layers<input type="number" id="extrudeLayers" min="2" max="80" value="3" /></label>
+            </div>
+            <button class="btn" id="btnGenerateSurface">Generate Surface</button>
+          </div>
+        </details>
+
+        <details open class="panel-section">
+          <summary>Surface Operations</summary>
+          <div class="panel-body">
+            <label>Active surface<select id="surfaceSelector"></select></label>
+            <label>Active body<select id="bodySelector"></select></label>
+            <label>Extrusion mode<select id="extrusionMode">
+              <option value="offset">Surface Offset (Legacy)</option>
+              <option value="shell">Shell Extrusion (Hollow)</option>
+              <option value="solid" selected>Full Solid Extrusion</option>
+            </select></label>
+            <label>Extrude distance<input type="number" id="extrudeDistance" min="0.1" max="500" step="1" value="40" /></label>
+            <label><input type="checkbox" id="replaceSurface" /> Replace active surface (offset mode only)</label>
+            <button class="btn secondary" id="btnExtrudeSurface">Extrude Selected Surface</button>
+          </div>
+        </details>
+
+        <details open class="panel-section">
+          <summary>Toolpath</summary>
+          <div class="panel-body">
+            <label>Stepover (mm)<input type="number" id="stepover" min="0.1" max="20" step="0.1" value="1" /></label>
+            <label>Tool radius (mm)<input type="number" id="toolRadius" min="0.1" max="50" step="0.1" value="2" /></label>
+            <label>Chord tolerance (mm)<input type="number" id="chordTol" min="0.001" max="5" step="0.001" value="0.01" /></label>
+            <label>Toolpath source<select id="toolpathSource">
+              <option value="surface">Surface (Parametric)</option>
+              <option value="mesh" selected>Derived Body Mesh</option>
+            </select></label>
+            <label>Scan axis<select id="scanAxis">
+              <option value="auto" selected>Auto (Adaptive)</option>
+              <option value="ux">Primary Axis (U / X)</option>
+              <option value="vy">Secondary Axis (V / Y)</option>
+            </select></label>
+            <label>Mesh envelope<select id="meshEnvelope">
+              <option value="top">Top Envelope (Max Z)</option>
+              <option value="full" selected>Full Envelope (Top+Bottom)</option>
+            </select></label>
+            <label><input type="checkbox" id="linkPasses" /> Link passes on surface (G1)</label>
+            <button class="btn" id="btnGenerateToolpath">Generate Zig-Zag Toolpath</button>
+          </div>
+        </details>
+
+        <details class="panel-section">
+          <summary>G-code Export</summary>
+          <div class="panel-body">
+            <label>Feed (mm/min)<input type="number" id="feedRate" min="10" max="5000" value="300" /></label>
+            <label>Plunge (mm/min)<input type="number" id="plungeRate" min="10" max="5000" value="180" /></label>
+            <label>Safe Z (mm)<input type="number" id="safeZ" min="0.1" max="500" value="10" /></label>
+            <label>Spindle RPM<input type="number" id="spindleRpm" min="100" max="40000" value="8000" /></label>
+            <button class="btn secondary" id="btnExportGcode">Export G-code</button>
+          </div>
+        </details>
+
+        <div class="status-label" id="status">Ready</div>
+      </aside>
+      <main class="main main-viewport">
+        <div id="viewport"></div>
+      </main>
+    </div>
+  </div>
+
+  <script type="module" src="js/project10/app.js"></script>
+</body>
+</html>
